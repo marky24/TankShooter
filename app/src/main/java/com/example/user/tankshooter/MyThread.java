@@ -83,10 +83,11 @@ public class MyThread extends Thread {
     {
         canvas.drawRect(0, 0, screenWidth, screenHeight,
                 backgroundPaint);
-        killMe.draw(canvas);
-        if (GlobalWars.A!=0) { cursor.draw(canvas);}
         canvas.drawCircle((1720/1920f)*GlobalWars.W,(870/1080f)*GlobalWars.H,(200f/1920)*GlobalWars.W, joystickPaint);
         canvas.drawCircle((1720/1920f)*GlobalWars.W,(870/1080f)*GlobalWars.H,(190f/1920)*GlobalWars.W, backgroundPaint);
+        killMe.draw(canvas);
+        if (GlobalWars.A!=0) { cursor.draw(canvas);}
+
 
     }
 
@@ -96,7 +97,7 @@ public class MyThread extends Thread {
         killMe.setPos(x);
         GlobalWars.A=x;
         GlobalWars.B=y;
-        if (GlobalWars.A!=0) {
+        if ( Math.sqrt(((x-(1720/1920f)*GlobalWars.W)*(x-(1720/1920f)*GlobalWars.W))+(((870/1080f)*GlobalWars.H-y)*((870/1080f)*GlobalWars.H-y)))<=(200f/1920)*GlobalWars.W) {
             cursor = new Cursor(x,y);
         }
 

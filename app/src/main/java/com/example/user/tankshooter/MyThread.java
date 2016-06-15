@@ -69,6 +69,7 @@ public class MyThread extends Thread {
             {
                 if (canvas != null)
                     surfaceHolder.unlockCanvasAndPost(canvas);
+                //add comment
             }
         }
     }

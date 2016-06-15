@@ -1,0 +1,29 @@
+package com.example.user.tankshooter;
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
+/**
+ * Created by user on 6/14/2016.
+ */
+public class Cursor {
+    float x;
+    float y;
+    float r = (100f / 1920) * GlobalWars.W;
+
+    private Paint joystickPaint;
+
+    public Cursor(float x, float y) {
+        this.x = x;
+        this.y = y;
+
+        joystickPaint = new Paint();
+        joystickPaint.setColor(Color.GRAY);
+    }
+
+    public void draw(Canvas canvas) {
+        canvas.drawCircle(x, y, r, joystickPaint);
+    }
+
+}

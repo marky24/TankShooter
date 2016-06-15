@@ -1,6 +1,8 @@
 package com.example.user.tankshooter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -24,7 +26,8 @@ public class MyThread extends Thread {
 
     /*    private KillMe killMe;*/
     private Cursor cursor;
-
+    private Player player;
+    private Context context;
     public MyThread(SurfaceHolder surfaceHolder,
                     int screenWidth, int screenHeight) {
         this.surfaceHolder = surfaceHolder;
@@ -51,8 +54,11 @@ public class MyThread extends Thread {
         double currentTime;
         double deltaT;
 
+        images.put("pl", BitmapFactory.decodeResource(context.getResources(), R.drawable.pl));
     /*    killMe = new KillMe(screenWidth);*/
         cursor = new Cursor((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+        Bitmap bm = images.get("pl");
+        player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,bm);
 
 
         while (running) {
@@ -87,6 +93,7 @@ public class MyThread extends Thread {
        /* killMe.draw(canvas);*/
 
             cursor.draw(canvas);
+            player.draw(canvas);
 
 
 

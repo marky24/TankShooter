@@ -45,7 +45,7 @@ public class MySurface extends SurfaceView implements
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
                                int height) {
-        myThread = new MyThread(holder,width,height);
+        myThread = new MyThread(getContext(),holder,width,height);
         myThread.setRunning(true);
         myThread.start();
     }

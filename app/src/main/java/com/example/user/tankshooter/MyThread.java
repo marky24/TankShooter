@@ -28,8 +28,9 @@ public class MyThread extends Thread {
     private Cursor cursor;
     private Player player;
     private Context context;
-    public MyThread(SurfaceHolder surfaceHolder,
+    public MyThread(Context context, SurfaceHolder surfaceHolder,
                     int screenWidth, int screenHeight) {
+        this.context = context;
         this.surfaceHolder = surfaceHolder;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
@@ -53,6 +54,7 @@ public class MyThread extends Thread {
         double lastTime = System.currentTimeMillis() / 1000.0;
         double currentTime;
         double deltaT;
+
 
         images.put("pl", BitmapFactory.decodeResource(context.getResources(), R.drawable.pl));
     /*    killMe = new KillMe(screenWidth);*/

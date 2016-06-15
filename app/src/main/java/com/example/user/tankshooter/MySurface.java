@@ -24,7 +24,15 @@ public class MySurface extends SurfaceView implements
         switch(event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
-                myThread.touchAction(event.getX(),event.getY());
+                myThread.touchAction(event.getAction(),event.getX(),event.getY());
+                return true;
+            case MotionEvent.ACTION_MOVE:
+//			Toast.makeText(getContext(), "ACTION_MOVE", 10).show();
+                myThread.touchAction(event.getAction(),event.getX(),event.getY());
+                return false;
+            case MotionEvent.ACTION_UP:
+//			Toast.makeText(getContext(), "ACTION_UP", 10).show();
+                myThread.touchAction(event.getAction(),event.getX(),event.getY());
                 return true;
         }
         return super.onTouchEvent(event);

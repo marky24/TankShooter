@@ -22,6 +22,11 @@ public class Cursor {
         joystickPaint.setColor(Color.GRAY);
     }
 
+    public void SetPosition(float x1, float y1) {
+x=x1;
+        y=y1;
+    }
+
     public void draw(Canvas canvas) {
         canvas.drawCircle(x, y, r, joystickPaint);
     }

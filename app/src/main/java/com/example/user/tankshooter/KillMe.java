@@ -1,12 +1,15 @@
+/*
 package com.example.user.tankshooter;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+*/
 /**
  * Created by user on 6/14/2016.
- */
+ *//*
+
 public class KillMe {
     private double x;
     private int screenWidth;
@@ -42,3 +45,4 @@ public class KillMe {
         speed = - speed;
     }
 }
+*/

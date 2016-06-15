@@ -1,9 +1,14 @@
 package com.example.user.tankshooter;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by user on 6/14/2016.
@@ -15,8 +20,9 @@ public class MyThread extends Thread {
     private int screenHeight;
     private Paint backgroundPaint;
     private Paint joystickPaint;
+    Map<String, Bitmap> images = new HashMap<String, Bitmap>();
 
-    private KillMe killMe;
+    /*    private KillMe killMe;*/
     private Cursor cursor;
 
     public MyThread(SurfaceHolder surfaceHolder,
@@ -24,12 +30,12 @@ public class MyThread extends Thread {
         this.surfaceHolder = surfaceHolder;
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        GlobalWars.H=screenHeight;
-        GlobalWars.W=screenWidth;
+        GlobalWars.H = screenHeight;
+        GlobalWars.W = screenWidth;
 
         backgroundPaint = new Paint();
         backgroundPaint.setColor(Color.WHITE);
-        joystickPaint= new Paint();
+        joystickPaint = new Paint();
         joystickPaint.setColor(Color.GRAY);
 
     }
@@ -45,15 +51,12 @@ public class MyThread extends Thread {
         double currentTime;
         double deltaT;
 
-        killMe = new KillMe(screenWidth);
+    /*    killMe = new KillMe(screenWidth);*/
+        cursor = new Cursor((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
 
 
-
-
-        while (running)
-        {
-            try
-            {
+        while (running) {
+            try {
                 canvas = surfaceHolder.lockCanvas();
                 if (canvas != null)
                     synchronized (surfaceHolder) {
@@ -64,9 +67,7 @@ public class MyThread extends Thread {
                         updateAll(deltaT);
                         drawAll(canvas);
                     }
-            }
-            finally
-            {
+            } finally {
                 if (canvas != null)
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 //add comment
@@ -74,36 +75,44 @@ public class MyThread extends Thread {
         }
     }
 
-    private void updateAll(double deltaT)
-    {
-        killMe.update(deltaT);
+    private void updateAll(double deltaT) {
+        /*killMe.update(deltaT);*/
     }
 
-    private void drawAll(Canvas canvas)
-    {
+    private void drawAll(Canvas canvas) {
         canvas.drawRect(0, 0, screenWidth, screenHeight,
                 backgroundPaint);
-        canvas.drawCircle((1720/1920f)*GlobalWars.W,(870/1080f)*GlobalWars.H,(200f/1920)*GlobalWars.W, joystickPaint);
-        canvas.drawCircle((1720/1920f)*GlobalWars.W,(870/1080f)*GlobalWars.H,(190f/1920)*GlobalWars.W, backgroundPaint);
-        killMe.draw(canvas);
-        if (GlobalWars.A!=0) { cursor.draw(canvas);}
+        canvas.drawCircle((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (200f / 1920) * GlobalWars.W, joystickPaint);
+        canvas.drawCircle((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (190f / 1920) * GlobalWars.W, backgroundPaint);
+       /* killMe.draw(canvas);*/
+
+            cursor.draw(canvas);
+
 
 
     }
 
-    public void touchAction(float x, float y) {
+    public void touchAction(int action, float x, float y) {
         //touchX = x;
         //touchY = y;
-        killMe.setPos(x);
-        GlobalWars.A=x;
-        GlobalWars.B=y;
-        if ( Math.sqrt(((x-(1720/1920f)*GlobalWars.W)*(x-(1720/1920f)*GlobalWars.W))+(((870/1080f)*GlobalWars.H-y)*((870/1080f)*GlobalWars.H-y)))<=(200f/1920)*GlobalWars.W) {
-            cursor = new Cursor(x,y);
+        /*killMe.setPos(x);*/
+        GlobalWars.A = x;
+
+        GlobalWars.B = y;
+
+
+        switch (action) {
+            case MotionEvent.ACTION_MOVE:
+                if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                    cursor.SetPosition(x, y);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+
+                cursor.SetPosition((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+
         }
-
-
-
-
-
     }
+
+
 }

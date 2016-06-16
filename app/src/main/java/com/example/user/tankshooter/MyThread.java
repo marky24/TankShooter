@@ -28,6 +28,7 @@ public class MyThread extends Thread {
     private Cursor cursor;
     private Cursor2 cursor2;
     private Player player;
+    private Field field;
     private Context context;
     public MyThread(Context context, SurfaceHolder surfaceHolder,
                     int screenWidth, int screenHeight) {
@@ -62,6 +63,7 @@ public class MyThread extends Thread {
         cursor2 = new Cursor2((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         Bitmap bm = images.get("pl");
         player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,0,bm);
+        field = new Field();
 
 
         while (running) {
@@ -101,6 +103,7 @@ public class MyThread extends Thread {
             cursor.draw(canvas);
             cursor2.draw(canvas);
             player.draw(canvas);
+            field.draw(canvas);
 
 
 

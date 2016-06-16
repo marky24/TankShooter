@@ -11,6 +11,7 @@ public class GlobalWars {
     public static int H;
     public static float A=0;
     public static float B=0;
+    public static double T;
 
 
 

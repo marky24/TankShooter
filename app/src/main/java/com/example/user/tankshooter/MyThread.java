@@ -60,7 +60,7 @@ public class MyThread extends Thread {
     /*    killMe = new KillMe(screenWidth);*/
         cursor = new Cursor((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         Bitmap bm = images.get("pl");
-        player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,bm);
+        player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,0,bm);
 
 
         while (running) {
@@ -71,6 +71,7 @@ public class MyThread extends Thread {
                         // рисовать на canvas
                         currentTime = System.currentTimeMillis() / 1000.0;
                         deltaT = currentTime - lastTime;
+                        GlobalWars.T=deltaT;
                         lastTime = currentTime;
                         updateAll(deltaT);
                         drawAll(canvas);
@@ -114,6 +115,7 @@ public class MyThread extends Thread {
             case MotionEvent.ACTION_MOVE:
                 if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
                     cursor.SetPosition(x, y);
+                    player.update(x,y);
                 }
                 break;
             case MotionEvent.ACTION_UP:

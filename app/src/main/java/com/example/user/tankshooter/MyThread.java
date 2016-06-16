@@ -20,13 +20,14 @@ public class MyThread extends Thread {
     private volatile boolean running = false;
     private int screenWidth;
     private int screenHeight;
+    public int b=0;
     private Paint backgroundPaint;
     private Paint joystickPaint;
     Map<String, Bitmap> images = new HashMap<String, Bitmap>();
 
     /*    private KillMe killMe;*/
     private Cursor cursor;
-    private Player player;
+    public Player player;
     private Context context;
     public MyThread(Context context, SurfaceHolder surfaceHolder,
                     int screenWidth, int screenHeight) {
@@ -112,14 +113,18 @@ public class MyThread extends Thread {
 
 
         switch (action) {
-            case MotionEvent.ACTION_MOVE:
-                if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
-                    cursor.SetPosition(x, y);
-                    player.update(x,y);
-                }
-                break;
-            case MotionEvent.ACTION_UP:
 
+                case MotionEvent.ACTION_MOVE:
+
+                    if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                        cursor.SetPosition(x, y);
+
+
+                    }
+
+          break;
+            case MotionEvent.ACTION_UP:
+b=1;
                 cursor.SetPosition((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
 
         }

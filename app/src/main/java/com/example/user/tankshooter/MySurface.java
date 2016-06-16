@@ -34,6 +34,7 @@ public class MySurface extends SurfaceView implements
 //			Toast.makeText(getContext(), "ACTION_UP", 10).show();
                 myThread.touchAction(event.getAction(),event.getX(),event.getY());
                 return true;
+
         }
         return super.onTouchEvent(event);
     }

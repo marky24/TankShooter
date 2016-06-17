@@ -31,6 +31,7 @@ public class Player {
     private Bitmap pl;
     float x=GlobalWars.W/2;
     float y=GlobalWars.H/2;
+    public static boolean IsM0ving=true;
 
     private float r=GlobalWars.W/10;
     private float r1=GlobalWars.W/15;
@@ -49,11 +50,11 @@ public class Player {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(pl, null, body, paint);
     }
-   /* public void update (float x2,float y2) {
+    public void update (float x2,float y2) {
 
 
 
-        if (x2>(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H ) {
+        if (((x2>(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
             speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
             speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
             Log.e("Player", "speedX=" + speedX);
@@ -66,9 +67,48 @@ public class Player {
             a=x2;
             b=y2;
         }
+        if (((x2<(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
+            speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
+            speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+            Log.e("Player", "speedX=" + speedX);
+            x0 = (float)(x - speedX * GlobalWars.T);
+            y0 = (float)(y - speedY * GlobalWars.T);
+            x=x0;
+            y=y0;
+            Log.e("Player", "x=" + x);
+            body = new RectF(x0-r,  (y0-r1), x0+r,  (y0 +r1));
+            a=x2;
+            b=y2;
 
+        }
+        if (((x2<(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
+            speedX = (Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
+            speedY = (Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+            Log.e("Player", "speedX=" + speedX);
+            x0 = (float) (x - speedX * GlobalWars.T);
+            y0 = (float) (y + speedY * GlobalWars.T);
+            x = x0;
+            y = y0;
+            Log.e("Player", "x=" + x);
+            body = new RectF(x0 - r, (y0 - r1), x0 + r, (y0 + r1));
+            a = x2;
+            b = y2;
+        }
+        if (((x2>(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
+            speedX = (Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
+            speedY = (Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+            Log.e("Player", "speedX=" + speedX);
+            x0 = (float) (x + speedX * GlobalWars.T);
+            y0 = (float) (y + speedY * GlobalWars.T);
+            x = x0;
+            y = y0;
+            Log.e("Player", "x=" + x);
+            body = new RectF(x0 - r, (y0 - r1), x0 + r, (y0 + r1));
+            a = x2;
+            b = y2;
+        }
 
-    }*/
+    }
 
 
 }

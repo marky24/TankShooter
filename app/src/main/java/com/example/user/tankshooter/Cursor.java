@@ -10,7 +10,7 @@ import android.graphics.Paint;
 public class Cursor {
     float x;
     float y;
-    float r = (75f / 1920) * GlobalWars.W;
+    float r = (100f / 1920) * GlobalWars.W;
 
     private Paint joystickPaint;
 

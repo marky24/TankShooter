@@ -108,6 +108,27 @@ public class Player {
             b = y2;
         }
 
+     /*   if (x>=GlobalWars.W) {
+            speedX=0;
+            speedY=0;
+        }
+        if (x<=0) {
+            speedX=0;
+            speedY=0;
+
+        }
+        if (y>=GlobalWars.H) {
+            speedY=0;
+            speedX=0;
+
+        }
+        if (y<=0) {
+            speedY=0;
+            speedX=0;
+
+        }
+        */
+
     }
 
 

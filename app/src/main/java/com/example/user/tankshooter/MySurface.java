@@ -29,11 +29,12 @@ public class MySurface extends SurfaceView implements
             case MotionEvent.ACTION_MOVE:
 //			Toast.makeText(getContext(), "ACTION_MOVE", 10).show();
                 myThread.touchAction(event.getAction(),event.getX(),event.getY());
-                return false;
+                return true;
             case MotionEvent.ACTION_UP:
 //			Toast.makeText(getContext(), "ACTION_UP", 10).show();
                 myThread.touchAction(event.getAction(),event.getX(),event.getY());
                 return true;
+
         }
         return super.onTouchEvent(event);
     }

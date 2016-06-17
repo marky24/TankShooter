@@ -20,13 +20,16 @@ public class MyThread extends Thread {
     private volatile boolean running = false;
     private int screenWidth;
     private int screenHeight;
+    public int b=0;
     private Paint backgroundPaint;
     private Paint joystickPaint;
     Map<String, Bitmap> images = new HashMap<String, Bitmap>();
 
     /*    private KillMe killMe;*/
     private Cursor cursor;
+    private Cursor2 cursor2;
     private Player player;
+    private Bashnya bashnya;
     private Field field;
     private Context context;
     public MyThread(Context context, SurfaceHolder surfaceHolder,
@@ -42,7 +45,6 @@ public class MyThread extends Thread {
         backgroundPaint.setColor(Color.WHITE);
         joystickPaint = new Paint();
         joystickPaint.setColor(Color.GRAY);
-
     }
 
     public void setRunning(boolean running) {
@@ -58,10 +60,15 @@ public class MyThread extends Thread {
 
 
         images.put("pl", BitmapFactory.decodeResource(context.getResources(), R.drawable.pl));
+        images.put("bash", BitmapFactory.decodeResource(context.getResources(), R.drawable.bash));
     /*    killMe = new KillMe(screenWidth);*/
         cursor = new Cursor((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+        cursor2 = new Cursor2((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         Bitmap bm = images.get("pl");
         player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,0,bm);
+        Bitmap bm1 = images.get("bash");
+        bashnya=new Bashnya(GlobalWars.W/2,GlobalWars.H/2,bm1);
+
         field = new Field();
 
 
@@ -88,6 +95,7 @@ public class MyThread extends Thread {
 
     private void updateAll(double deltaT) {
         /*killMe.update(deltaT);*/
+        if  (Player.IsM0ving==false) {player.update(GlobalWars.A,GlobalWars.B);}
     }
 
     private void drawAll(Canvas canvas) {
@@ -95,11 +103,15 @@ public class MyThread extends Thread {
                 backgroundPaint);
         canvas.drawCircle((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (200f / 1920) * GlobalWars.W, joystickPaint);
         canvas.drawCircle((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (190f / 1920) * GlobalWars.W, backgroundPaint);
+        canvas.drawCircle((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (200f / 1920) * GlobalWars.W, joystickPaint);
+        canvas.drawCircle((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H, (190f / 1920) * GlobalWars.W, backgroundPaint);
        /* killMe.draw(canvas);*/
 
             cursor.draw(canvas);
+            cursor2.draw(canvas);
             player.draw(canvas);
             field.draw(canvas);
+        bashnya.draw(canvas);
 
 
 
@@ -109,22 +121,33 @@ public class MyThread extends Thread {
         //touchX = x;
         //touchY = y;
         /*killMe.setPos(x);*/
-        GlobalWars.A = x;
 
-        GlobalWars.B = y;
+
 
 
         switch (action) {
             case MotionEvent.ACTION_MOVE:
-                if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
-                    cursor.SetPosition(x, y);
-                    player.update(x,y);
+
+                if (x>GlobalWars.W/2) {
+                    if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                        cursor.SetPosition(x, y);
+                    }
                 }
+                if (x<=GlobalWars.W/2){
+                    if (Math.sqrt(((x-(200 / 1920f) * GlobalWars.W) * (x-(200 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                                                  cursor2.SetPosition(x, y);
+                                              }
+                                          }
+                 player.update(x,y);
+            Player.IsM0ving=false;
+                GlobalWars.A=x;
+                GlobalWars.B=y;
                 break;
             case MotionEvent.ACTION_UP:
 
-                cursor.SetPosition((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
-
+               Player.IsM0ving=true;
+                   cursor.SetPosition((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+                    cursor2.SetPosition((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         }
     }
 

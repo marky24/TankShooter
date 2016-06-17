@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TankShooter</string>
+    <string name="fe">speedX=</string>
 </resources>

@@ -65,7 +65,7 @@ public class MyThread extends Thread {
         cursor = new Cursor((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         cursor2 = new Cursor2((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
         Bitmap bm = images.get("pl");
-        player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,0,bm);
+        player=new Player(GlobalWars.W/2,GlobalWars.H/2,0,0,bm,cursor);
         Bitmap bm1 = images.get("bash");
         bashnya=new Bashnya(GlobalWars.W/2,GlobalWars.H/2,bm1);
 
@@ -95,7 +95,8 @@ public class MyThread extends Thread {
 
     private void updateAll(double deltaT) {
         /*killMe.update(deltaT);*/
-        if  (Player.IsM0ving==false) {player.update(GlobalWars.A,GlobalWars.B);}
+        if  (Player.IsM0ving==false) {
+            player.update(GlobalWars.A,GlobalWars.B);}
     }
 
     private void drawAll(Canvas canvas) {

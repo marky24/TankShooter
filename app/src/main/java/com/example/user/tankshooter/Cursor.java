@@ -23,7 +23,7 @@ public class Cursor {
     }
 
     public void SetPosition(float x1, float y1) {
-x=x1;
+        x=x1;
         y=y1;
     }
 

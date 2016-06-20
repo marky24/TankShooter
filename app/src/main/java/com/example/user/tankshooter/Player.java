@@ -41,7 +41,7 @@ public class Player {
         this.speedX = speedX;
         this.speedY = speedY;
         this.x0=x0;
-        this.y0=0;
+        this.y0=y0;
         c = cursor;
         paint = new Paint();
         paint.setColor(Color.BLUE);
@@ -65,11 +65,22 @@ public class Player {
         if (y>GlobalWars.H){
             y = 0;
         }
+        speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
+        speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+
+        if ((x>=1/4f*GlobalWars.W-1/4*r) & (x<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) & (y>=8/18f*GlobalWars.H) & (y<=8/18f*GlobalWars.H+5/18f*GlobalWars.H)) {
+           speedX = 0;
+        }
+        if ((x>=14/32f*GlobalWars.W) & (x<=14/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y>=4/18f*GlobalWars.H) & (y<=4/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
+          speedY=0;
+        }
+        if ((x>=18/32f*GlobalWars.W) & (x<=18/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y>=13/18f*GlobalWars.H) & (y<=13/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
+            speedY=0;
+        }
 
 
         if (((x2>(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
-            speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
-            speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+
             Log.e("Player", "speedX=" + speedX);
 
             x0 = (float)(x + speedX * GlobalWars.T);
@@ -84,8 +95,7 @@ public class Player {
             b=y2;
         }
         if (((x2<(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
-            speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
-            speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+
             Log.e("Player", "speedX=" + speedX);
             Log.e("UP","LEFT");
             x0 = (float)(x - speedX * GlobalWars.T);
@@ -105,8 +115,7 @@ public class Player {
 
         }
         if (((x2<(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
-            speedX = (Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
-            speedY = (Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+
             Log.e("Player", "speedX=" + speedX);
             Log.e("DOWN","LEFT");
             x0 = (float) (x - speedX * GlobalWars.T);
@@ -126,8 +135,7 @@ public class Player {
             b = y2;
         }
         if (((x2>(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
-            speedX = (Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
-            speedY = (Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
+
             Log.e("Player", "speedX=" + speedX);
             Log.e("DOWN","RIGHT");
             x0 = (float) (x + speedX * GlobalWars.T);
@@ -150,18 +158,7 @@ public class Player {
 
 
 
-        if ((x>=1/4f*GlobalWars.W) && (x<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) && (y>=8/18f*GlobalWars.H) && (y<=8/18f*GlobalWars.H+5/18f*GlobalWars.H)) {
-            x=x-r;
-            y2=y2-r1;
-        }
-        if ((x>=14/32f*GlobalWars.W) && (x<=14/32f*GlobalWars.W+5/32f*GlobalWars.W) && (y>=4/18f*GlobalWars.H) && (y<=4/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
-            x=x-r;
-            y=y-r1;
-        }
-        if ((x>=18/32f*GlobalWars.W) && (2<=18/32f*GlobalWars.W+5/32f*GlobalWars.W) && (y>=13/18f*GlobalWars.H) && (y<=13/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
-            x=x-r;
-            y=y-r1;
-        }
+
     }
 
      /*   if (x>=GlobalWars.W) {

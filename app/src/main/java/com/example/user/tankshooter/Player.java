@@ -91,8 +91,8 @@ public class Player {
             Log.e("UP","RIGHT");
 
             body = new RectF(x0-r,  (y0-r1), x0+r,  (y0 +r1));
-            a=x2;
-            b=y2;
+            Bashnya.body=new RectF(x - Bashnya.r, (y - Bashnya.r1), x + Bashnya.r, (y + Bashnya.r1));
+
         }
         if (((x2<(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
 
@@ -110,8 +110,7 @@ public class Player {
                 c.y = (870 / 1080f) * GlobalWars.H;
             }
             body = new RectF(x0-r,  (y0-r1), x0+r,  (y0 +r1));
-            a=x2;
-            b=y2;
+            Bashnya.body=new RectF(x - Bashnya.r, (y - Bashnya.r1), x + Bashnya.r, (y + Bashnya.r1));
 
         }
         if (((x2<(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
@@ -131,8 +130,8 @@ public class Player {
 
             }
             body = new RectF(x0 - r, (y0 - r1), x0 + r, (y0 + r1));
-            a = x2;
-            b = y2;
+            Bashnya.body=new RectF(x - Bashnya.r, (y - Bashnya.r1), x + Bashnya.r, (y + Bashnya.r1));
+
         }
         if (((x2>(1720 / 1920f) * GlobalWars.W && y2>(870 / 1080f) * GlobalWars.H  ))) {
 
@@ -152,8 +151,8 @@ public class Player {
 
             }
             body = new RectF(x0 - r, (y0 - r1), x0 + r, (y0 + r1));
-            a = x2;
-            b = y2;
+            Bashnya.body=new RectF(x - Bashnya.r, (y - Bashnya.r1), x + Bashnya.r, (y + Bashnya.r1));
+
         }
 
 

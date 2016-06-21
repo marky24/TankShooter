@@ -13,9 +13,10 @@ public class Bashnya {
     private Paint paint;
     private Bitmap bash;
     float x;
-    RectF body;
-    private float r=GlobalWars.W/20;
-    private float r1=GlobalWars.W/30;
+
+    static RectF body;
+     static float r=GlobalWars.W/20;
+     static float r1=GlobalWars.W/30;
     float y;
        public Bashnya(float x, float y, Bitmap image) {
            this.x=x;

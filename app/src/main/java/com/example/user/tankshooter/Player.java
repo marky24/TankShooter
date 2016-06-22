@@ -22,16 +22,15 @@ import android.util.Log;
 public class Player {
     float x0;
     float y0;
-    float a=0;
-    float b=0;
+
     RectF body;
     double speedX;
     double speedY;
     private Paint paint;
     private Bitmap pl;
     Cursor c;
-    static float x=GlobalWars.W/2;
-    static float y=GlobalWars.H/2;
+    public static float x=GlobalWars.W/2;
+    public static float y=GlobalWars.H/2;
     public static boolean IsM0ving=true;
 
     private float r=GlobalWars.W/10;
@@ -54,7 +53,6 @@ public class Player {
 
 
     public void update (float x2,float y2) {
-
         if (x> GlobalWars.W){
             x = 0;
         }
@@ -70,18 +68,18 @@ public class Player {
         speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
         speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
 
-        if ((x+r-125/1920f*GlobalWars.W>=1/4f*GlobalWars.W) & (x-r+96/1920f*GlobalWars.W<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) &
+       /*if ((x+r-125/1920f*GlobalWars.W>=1/4f*GlobalWars.W) & (x-r+96/1920f*GlobalWars.W<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) &
                 (y+r1>=8/18f*GlobalWars.H) & (y-r1<=8/18f*GlobalWars.H+5/18f*GlobalWars.H)) {
             speedX = 0;
-        }
+        }*/
 
         if ((x+r1>=14/32f*GlobalWars.W) & (x-r1<=14/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y+r-96/1080f*GlobalWars.H>=4/18f*GlobalWars.H) & (y-r+90/1080f*GlobalWars.H<=4/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
             speedY=0;
+
         }
         if ((x+r1>=18/32f*GlobalWars.W) & (x-r1<=18/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y+r-96/1080f*GlobalWars.H>=13/18f*GlobalWars.H) & (y-r+90/1080f*GlobalWars.H<=13/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
             speedY=0;
         }
-
 
         if (((x2>(1720 / 1920f) * GlobalWars.W && y2<(870 / 1080f) * GlobalWars.H  ))) {
 

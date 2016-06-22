@@ -153,4 +153,46 @@ public class MyThread extends Thread {
     }
 
 
+
+    public void touchEvent(MotionEvent event){
+        switch (event.getAction()){
+            case MotionEvent.ACTION_MOVE:
+                for(int i = 0; i < event.getPointerCount(); i++){
+                    float x = event.getX(event.findPointerIndex(i));
+                    float y = event.getY(event.findPointerIndex(i));
+                    if (x>GlobalWars.W/2) {
+                        if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                            cursor.SetPosition(x, y);
+                            //
+                            Player.IsM0ving=false;
+                            GlobalWars.A=x;
+                            GlobalWars.B=y;
+                            //
+                        }
+                    }
+                    if (x<=GlobalWars.W/2){
+                        if (Math.sqrt(((x-(200 / 1920f) * GlobalWars.W) * (x-(200 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                            cursor2.SetPosition(x, y);
+                        }
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                for (int i = 0; i < event.getPointerCount(); i++) {
+                    float x = event.getX(event.findPointerIndex(i));
+                    float y = event.getY(event.findPointerIndex(i));
+                    if (x>GlobalWars.W/2) {
+                        if (Math.sqrt(((x - (1720 / 1920f) * GlobalWars.W) * (x - (1720 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                            cursor.SetPosition((1720 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+                            Player.IsM0ving=true;
+                        }
+                    }
+                    if (x <= GlobalWars.W / 2) {
+                        if (Math.sqrt(((x - (200 / 1920f) * GlobalWars.W) * (x - (200 / 1920f) * GlobalWars.W)) + (((870 / 1080f) * GlobalWars.H - y) * ((870 / 1080f) * GlobalWars.H - y))) <= (200f / 1920) * GlobalWars.W) {
+                            cursor2.SetPosition((200 / 1920f) * GlobalWars.W, (870 / 1080f) * GlobalWars.H);
+                        }
+                    }
+                }
+        }
+    }
 }

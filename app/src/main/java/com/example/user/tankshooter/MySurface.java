@@ -19,25 +19,33 @@ public class MySurface extends SurfaceView implements
         getHolder().addCallback(this);
     }
 
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        switch(event.getAction())
+//        {
+//            case MotionEvent.ACTION_DOWN:
+//                myThread.touchAction(event.getAction(),event.getX(),event.getY());
+//                return true;
+//            case MotionEvent.ACTION_MOVE:
+////			Toast.makeText(getContext(), "ACTION_MOVE", 10).show();
+//                myThread.touchAction(event.getAction(),event.getX(),event.getY());
+//                return true;
+//            case MotionEvent.ACTION_UP:
+////			Toast.makeText(getContext(), "ACTION_UP", 10).show();
+//                myThread.touchAction(event.getAction(),event.getX(),event.getY());
+//                return true;
+//
+//        }
+//        return super.onTouchEvent(event);
+//    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch(event.getAction())
-        {
-            case MotionEvent.ACTION_DOWN:
-                myThread.touchAction(event.getAction(),event.getX(),event.getY());
-                return true;
-            case MotionEvent.ACTION_MOVE:
-//			Toast.makeText(getContext(), "ACTION_MOVE", 10).show();
-                myThread.touchAction(event.getAction(),event.getX(),event.getY());
-                return true;
-            case MotionEvent.ACTION_UP:
-//			Toast.makeText(getContext(), "ACTION_UP", 10).show();
-                myThread.touchAction(event.getAction(),event.getX(),event.getY());
-                return true;
-
-        }
-        return super.onTouchEvent(event);
+            myThread.touchEvent(event);
+            return true;
     }
+
+
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

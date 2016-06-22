@@ -30,8 +30,8 @@ public class Player {
     private Paint paint;
     private Bitmap pl;
     Cursor c;
-    float x=GlobalWars.W/2;
-    float y=GlobalWars.H/2;
+    static float x=GlobalWars.W/2;
+    static float y=GlobalWars.H/2;
     public static boolean IsM0ving=true;
 
     private float r=GlobalWars.W/10;
@@ -51,6 +51,8 @@ public class Player {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(pl, null, body, paint);
     }
+
+
     public void update (float x2,float y2) {
 
         if (x> GlobalWars.W){
@@ -68,13 +70,15 @@ public class Player {
         speedX=(Math.sqrt((x2 - (1720 / 1920f) * GlobalWars.W) * (x2 - (1720 / 1920f) * GlobalWars.W)));
         speedY=(Math.sqrt(((870 / 1080f) * GlobalWars.H - y2) * ((870 / 1080f) * GlobalWars.H - y2)));
 
-        if ((x>=1/4f*GlobalWars.W-1/4*r) & (x<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) & (y>=8/18f*GlobalWars.H) & (y<=8/18f*GlobalWars.H+5/18f*GlobalWars.H)) {
-           speedX = 0;
+        if ((x+r-125/1920f*GlobalWars.W>=1/4f*GlobalWars.W) & (x-r+96/1920f*GlobalWars.W<=1/4f*GlobalWars.W+1/32f*GlobalWars.W) &
+                (y+r1>=8/18f*GlobalWars.H) & (y-r1<=8/18f*GlobalWars.H+5/18f*GlobalWars.H)) {
+            speedX = 0;
         }
-        if ((x>=14/32f*GlobalWars.W) & (x<=14/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y>=4/18f*GlobalWars.H) & (y<=4/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
-          speedY=0;
+
+        if ((x+r1>=14/32f*GlobalWars.W) & (x-r1<=14/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y+r-96/1080f*GlobalWars.H>=4/18f*GlobalWars.H) & (y-r+90/1080f*GlobalWars.H<=4/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
+            speedY=0;
         }
-        if ((x>=18/32f*GlobalWars.W) & (x<=18/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y>=13/18f*GlobalWars.H) & (y<=13/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
+        if ((x+r1>=18/32f*GlobalWars.W) & (x-r1<=18/32f*GlobalWars.W+5/32f*GlobalWars.W) & (y+r-96/1080f*GlobalWars.H>=13/18f*GlobalWars.H) & (y-r+90/1080f*GlobalWars.H<=13/18f*GlobalWars.H+1/18f*GlobalWars.H)) {
             speedY=0;
         }
 

@@ -38,7 +38,7 @@ public class KillMe {
         x=X;
         y=Y;
         zl = image;
-        speed = screenWidth / 30f;
+        speed = screenWidth/9f;
         paint = new Paint();
         paint.setColor(Color.BLUE);
     }
